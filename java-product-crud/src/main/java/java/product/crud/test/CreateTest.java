@@ -12,8 +12,7 @@ import java.util.List;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Persistence;
 
-public class Test {
-
+public class CreateTest {
 	public static void main(String[] args) {
 		EntityManager em = null;
 		
