@@ -1,16 +1,17 @@
-package java.product.crud.test;
+package product.crud.test;
 
-import java.product.crud.entity.Client;
-import java.product.crud.entity.Establishment;
-import java.product.crud.entity.EstablishmentType;
-import java.product.crud.entity.RentContract;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
+import product.crud.entity.Client;
+import product.crud.entity.Establishment;
+import product.crud.entity.EstablishmentType;
+import product.crud.entity.RentContract;
 
 public class CreateTest {
 	public static void main(String[] args) {
@@ -43,8 +44,9 @@ public class CreateTest {
 			em.persist(establishment1);
 			em.persist(establishment2);
 			
-			em.getTransaction().begin();
-			em.getTransaction().commit();
+			EntityTransaction transaction = em.getTransaction();
+			transaction.begin();
+			transaction.commit();
 			
 			em.close();
 		} catch (Exception e) {

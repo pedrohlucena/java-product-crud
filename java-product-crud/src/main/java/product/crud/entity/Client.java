@@ -1,4 +1,4 @@
-package java.product.crud.entity;
+package product.crud.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -23,6 +23,12 @@ public class Client {
 	
 	public Client() {
 		super();
+	}
+
+	public Client(int id, String name) {
+		super();
+		this.id = id;
+		this.name = name;
 	}
 
 	public Client(String name) {

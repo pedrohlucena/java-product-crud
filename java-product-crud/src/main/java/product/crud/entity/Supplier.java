@@ -1,4 +1,4 @@
-package java.product.crud.entity;
+package product.crud.entity;
 
 import java.util.Calendar;
 
