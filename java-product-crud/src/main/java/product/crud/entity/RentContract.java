@@ -26,7 +26,7 @@ public class RentContract {
 	private Calendar dueDate;
 
 	@OneToOne
-	@JoinColumn(name="id_establishment")
+	@JoinColumn(name="establishment_id")
 	private Establishment establishment;
 
 	public RentContract() {

@@ -44,8 +44,8 @@ public class Establishment implements Serializable {
 	
 	@ManyToMany(cascade=CascadeType.PERSIST)
 	@JoinTable(
-		joinColumns = @JoinColumn(name = "id_estabelecimento"),
-		inverseJoinColumns = @JoinColumn(name = "id_cliente"),
+		joinColumns = @JoinColumn(name = "id_establishment"),
+		inverseJoinColumns = @JoinColumn(name = "client_id"),
 		name = "T_CLIENT_ESTABLISHMENT"
 	)
 	private List<Client> clients;
