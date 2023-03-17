@@ -1,32 +1,24 @@
 package product.crud.test;
 
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
-import product.crud.entity.Client;
+import product.crud.dao.ClientDAO;
 
 public class DeleteTest {
 	public static void main(String[] args) {
-		EntityManager em = Persistence.createEntityManagerFactory("smartcities-orm").createEntityManager();
+		EntityManager em = Persistence.createEntityManagerFactory("product-crud").createEntityManager();
 		
-		Client client = em.find(Client.class, 2);
-		
-		em.remove(client);
+		ClientDAO clientDao = new ClientDAO(em);
 		
 		try {	
-			EntityTransaction transaction = em.getTransaction();
-			transaction.begin();
-			transaction.commit();
+			clientDao.remove(1);
+			clientDao.commit();
 		} catch (Exception e) {
-			if (em != null && em.getTransaction().isActive()) {
-				em.getTransaction().rollback();
-			}
 			e.printStackTrace();
 		} finally{
 			if (em != null) {
 				em.close();
 			}
-			System.exit(0);
 		}
 	}
 }

@@ -1,34 +1,29 @@
 package product.crud.test;
 
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
+import product.crud.dao.ClientDAO;
 import product.crud.entity.Client;
+import product.crud.entity.PhysicalPersonClient;
 
 public class UpdateTest {
 	public static void main(String[] args) {
-		EntityManager em = Persistence.createEntityManagerFactory("smartcities-orm").createEntityManager();
+		EntityManager em = Persistence.createEntityManagerFactory("product-crud").createEntityManager();
 		
-		Client client = new Client(1, "Banana");
-		em.merge(client);
+		ClientDAO clientDao = new ClientDAO(em);
 		
-//		Client client = em.find(Client.class, 1);
-//		client.setName("Thiago");
+		Client client = new PhysicalPersonClient(1, "Banana");
+		
+		clientDao.update(client);
 		
 		try {	
-			EntityTransaction transaction = em.getTransaction();
-			transaction.begin();
-			transaction.commit();
+			clientDao.commit();
 		} catch (Exception e) {
-			if (em != null && em.getTransaction().isActive()) {
-				em.getTransaction().rollback();
-			}
 			e.printStackTrace();
 		} finally{
 			if (em != null) {
 				em.close();
 			}
-			System.exit(0);
 		}
 	}
 }
