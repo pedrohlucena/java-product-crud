@@ -47,7 +47,7 @@ public abstract class GenericDAO<T,K> {
 			em.getTransaction().begin();
 			em.getTransaction().commit();
 		}catch(Exception e){
-			if (em.getTransaction().isActive())
+			if (em != null && em.getTransaction().isActive())
 				em.getTransaction().rollback();
 			e.printStackTrace();
 			throw new Exception("Commit error");
