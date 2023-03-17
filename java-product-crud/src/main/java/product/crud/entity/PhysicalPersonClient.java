@@ -18,6 +18,14 @@ public class PhysicalPersonClient extends Client {
 	public PhysicalPersonClient() {
 		super();
 	}
+	
+	public PhysicalPersonClient(String name) {
+		super(name);
+	}
+	
+	public PhysicalPersonClient(int id, String name) {
+		super(id, name);
+	}
 
 	public String getMaritalStatus() {
 		return maritalStatus;
