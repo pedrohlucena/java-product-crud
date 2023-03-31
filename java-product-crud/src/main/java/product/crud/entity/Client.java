@@ -32,6 +32,9 @@ public abstract class Client {
 	@Column(name="client_name",nullable=false)
 	private String name;
 	
+	@Column(name="ds_email", nullable=false)
+	private String email;
+	
 	@ManyToMany(mappedBy = "clients")
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private List<Establishment> establishments;
@@ -49,6 +52,18 @@ public abstract class Client {
 		super();
 		this.id = id;
 		this.name = name;
+	}
+	
+	public Client(String name, String email) {
+		super();
+		this.name = name;
+		this.email = email;
+	}
+
+	public Client(int id, String name, String email) {
+		super();
+		this.id = id;
+		this.email = email;
 	}
 	
 	public List<Establishment> getEstablishments() {
@@ -69,5 +84,13 @@ public abstract class Client {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 }
