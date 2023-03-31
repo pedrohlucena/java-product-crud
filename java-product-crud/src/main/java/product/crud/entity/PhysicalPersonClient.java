@@ -1,5 +1,7 @@
 package product.crud.entity;
 
+import java.io.Serializable;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
@@ -8,7 +10,9 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name="T_PHYSICAL_PERSON_CLIENT")
 @DiscriminatorValue("PF")
-public class PhysicalPersonClient extends Client {
+public class PhysicalPersonClient extends Client implements Serializable {
+	private static final long serialVersionUID = -5189522578065868608L;
+
 	@Column(name="estado_civil", length = 20)
 	private String maritalStatus;
 
@@ -25,6 +29,14 @@ public class PhysicalPersonClient extends Client {
 	
 	public PhysicalPersonClient(int id, String name) {
 		super(id, name);
+	}
+	
+	public PhysicalPersonClient(String name, String email) {
+		super(name, email);
+	}
+	
+	public PhysicalPersonClient(int id, String name, String email) {
+		super(id, name, email);
 	}
 
 	public String getMaritalStatus() {
